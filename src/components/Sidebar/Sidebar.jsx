@@ -12,7 +12,7 @@ import { translate } from 'cozy-ui/react/I18n'
 
 import SidebarModal from './SidebarModal'
 
-export default class Sidebar extends Component {
+export class Sidebar extends Component {
   constructor(props) {
     super(props)
 
@@ -29,6 +29,8 @@ export default class Sidebar extends Component {
 
   render() {
     const { openCategoryModal } = this.state
+    const { t } = this.props
+    console.log(t)
     return (
       <aside className="o-sidebar">
         <div>
@@ -40,7 +42,7 @@ export default class Sidebar extends Component {
             <Button
               className="c-add-category"
               type="submit"
-              label="New category"
+              label={t('SIDEBAR.ADD_CATEGORY')}
               size="large"
               icon={<FontAwesomeIcon icon="plus" />}
               extension="narrow"
