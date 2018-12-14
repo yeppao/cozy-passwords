@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
+import { withRouter } from 'react-router-dom'
+
 import { Button, Modal, ModalContent, Label, Input } from 'cozy-ui/react'
 import { withMutations } from 'cozy-client'
 import { CATEGORIES_DOCTYPE } from 'doctypes'
+import { translate } from 'cozy-ui/react/I18n'
 
 import Select from 'react-select'
 import { CustomCategoriesOption } from '../Select/CustomCategoriesOption'
@@ -40,17 +43,25 @@ export class SidebarModal extends Component {
       categoryIcon: '',
       isWorking: true
     }))
-    await createDocument(CATEGORIES_DOCTYPE, {
+    createDocument(CATEGORIES_DOCTYPE, {
       name: categoryToAdd,
       icon: categoryIcon
+    }).then(response => {
+      const { data } = response
+      // remove the spinner
+      this.setState(() => ({ isWorking: false }))
+      this.props.toggleModal()
+      this.goToCategory(data.id)
     })
-    // remove the spinner
-    this.setState(() => ({ isWorking: false }))
-    this.props.closeModal()
+  }
+
+  goToCategory(categoryId) {
+    this.props.history.push(`/category/${categoryId}`)
   }
 
   render() {
     const { openCategoryModal, categoryToAdd, isWorking } = this.state
+    const { t } = this.props
     return (
       openCategoryModal && (
         <Modal
@@ -58,10 +69,12 @@ export class SidebarModal extends Component {
           closable
           dismissAction={() => this.props.toggleModal()}
         >
-          <ModalContent>
-            <h2>Add a new category</h2>
+          <ModalContent className="password-modal-content">
+            <h2>{t('SIDEBAR_MODAL.ADD_CATEGORY_LABEL')}</h2>
             <form onSubmit={this.handleSubmit}>
-              <Label htmlFor="category-add-input"> Category name: </Label>
+              <Label htmlFor="category-add-input">
+                {t('SIDEBAR_MODAL.CATEGORY_LABEL')}
+              </Label>
               <Input
                 value={categoryToAdd}
                 onChange={this.handleChange}
@@ -77,7 +90,7 @@ export class SidebarModal extends Component {
                 onClick={this.submit}
                 type="submit"
                 busy={isWorking}
-                label="add"
+                label={t('MODAL.ADD')}
                 size="large"
                 extension="full"
               />
@@ -89,4 +102,4 @@ export class SidebarModal extends Component {
   }
 }
 
-export default withMutations()(SidebarModal)
+export default withRouter(translate()(withMutations()(SidebarModal)))

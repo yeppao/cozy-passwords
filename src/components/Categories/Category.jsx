@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import CategoryModal from './CategoryModal'
+import PasswordModal from './PasswordModal'
 
 export default class Category extends Component {
   constructor(props) {
@@ -19,7 +19,8 @@ export default class Category extends Component {
       categoryId: null,
       passwords: [],
       isWorking: false,
-      openPasswordModal: false
+      openPasswordModal: false,
+      passwordId: null
     }
   }
 
@@ -28,20 +29,31 @@ export default class Category extends Component {
   }
 
   componentDidMount() {
-    this.setState(() => ({
-      categoryId: this.props.match.params.id
-    }))
+    this.setState({ categoryId: this.props.match.params.id })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ categoryId: nextProps.match.params.id })
+  }
+
+  editPassword(passwordId) {
+    this.setState({ passwordId: passwordId, openPasswordModal: true })
   }
 
   render() {
-    const { openPasswordModal, categoryId } = this.state
+    const { openPasswordModal, passwordId, categoryId } = this.state
+
     const query = client =>
-      client.find(PASSWORDS_DOCTYPE).where({ category: categoryId })
+      client
+        .find(PASSWORDS_DOCTYPE)
+        .where({ category: this.props.match.params.id })
     return (
       <div>
-        <CategoryModal
+        <PasswordModal
           openPasswordModal={openPasswordModal}
           categoryId={categoryId}
+          passwordId={passwordId}
+          togglePasswordModal={this.togglePasswordModal}
         />
         <Button
           label="Add a password"
@@ -55,19 +67,33 @@ export default class Category extends Component {
             return (
               <div>
                 {passwords.map(password => (
-                  <NavLink
-                    key={password.id}
-                    to={`/password/${password.id}`}
-                    className="unstyled-link"
-                  >
-                    <div className="password">
-                      <div>
+                  <div className="password" key={password.id}>
+                    <div>
+                      <NavLink
+                        key={password.id}
+                        to={`/password/${password.id}`}
+                        className="unstyled-link"
+                      >
                         <div>{password.website}</div>
                         <Caption>{password.description}</Caption>
-                      </div>
-                      <div>&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</div>
+                      </NavLink>
                     </div>
-                  </NavLink>
+                    <div>
+                      <NavLink
+                        key={password.id}
+                        to={`/password/${password.id}`}
+                        className="unstyled-link"
+                      >
+                        &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;
+                      </NavLink>
+                    </div>
+                    <div>
+                      <FontAwesomeIcon
+                        icon="edit"
+                        onClick={() => this.editPassword(password.id)}
+                      />
+                    </div>
+                  </div>
                 ))}
               </div>
             )

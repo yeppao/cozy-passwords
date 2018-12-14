@@ -1,5 +1,29 @@
 {
   "SIDEBAR": {
-      "ADD_CATEGORY": "Add category"
+    "ADD_CATEGORY": "Add category"
+  },
+  "SIDEBAR_MODAL": {
+    "ADD_CATEGORY_LABEL": "Add a new category",
+    "CATEGORY_LABEL": "Category"
+  },
+  "CATEGORY_MODAL": {
+    "ADD_PASSWORD_LABEL": "Add a new password",
+    "WEBSITE_LABEL": "Website",
+    "PASSWORD_LABEL": "Password",
+    "DESCRIPTION_LABEL": "Description"
+  },
+  "HOMEPAGE": {
+    "TITLE": "Passwords manager",
+    "PASSWORD": {
+      "TITLE": "All your passwords, accessible everywhere",
+      "DESCRIPTION": "You will be able to manage all your differents passwords in this cloud application"
+    },
+    "SECURE": {
+      "TITLE": "A secured way to store them",
+      "DESCRIPTION": "Protected behind Cozy security, your passwords are safe in here."
+    }
+  },
+  "MODAL": {
+    "ADD": "Add"
   }
 }

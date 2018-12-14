@@ -11,10 +11,13 @@ import {
   faDesktop,
   faMobileAlt,
   faFolder,
-  faPlus
+  faPlus,
+  faKey,
+  faLock,
+  faEdit
 } from '@fortawesome/free-solid-svg-icons'
 
-import Sidebar from './Sidebar/Sidebar'
+import AppSidebar from './Sidebar/Sidebar'
 import Home from './Home'
 import Category from './Categories/Category'
 import Password from './Password/Password'
@@ -27,13 +30,16 @@ library.add(
   faDesktop,
   faMobileAlt,
   faFolder,
-  faPlus
+  faPlus,
+  faKey,
+  faLock,
+  faEdit
 )
 
 const App = () => (
   <HashRouter>
     <Layout>
-      <Sidebar />
+      <AppSidebar />
       <Main>
         <Content className="app-content">
           <Switch>

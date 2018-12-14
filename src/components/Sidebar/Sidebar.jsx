@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { Button } from 'cozy-ui/react'
+import { Sidebar, Nav, NavItem, NavText } from 'cozy-ui/react'
 import { Query } from 'cozy-client'
 import { categoriesQuery } from 'doctypes'
 
@@ -12,7 +12,7 @@ import { translate } from 'cozy-ui/react/I18n'
 
 import SidebarModal from './SidebarModal'
 
-export class Sidebar extends Component {
+export class AppSidebar extends Component {
   constructor(props) {
     super(props)
 
@@ -30,57 +30,54 @@ export class Sidebar extends Component {
   render() {
     const { openCategoryModal } = this.state
     const { t } = this.props
-    console.log(t)
     return (
-      <aside className="o-sidebar">
-        <div>
-          <SidebarModal
-            openCategoryModal={this.state.openCategoryModal}
-            toggleModal={this.toggleCategoryModal}
-          />
-          <nav>
-            <Button
-              className="c-add-category"
-              type="submit"
-              label={t('SIDEBAR.ADD_CATEGORY')}
-              size="large"
-              icon={<FontAwesomeIcon icon="plus" />}
-              extension="narrow"
-              onClick={() =>
-                this.setState({ openCategoryModal: !openCategoryModal })
-              }
-            />
-            <Query query={categoriesQuery}>
-              {({ data: categories, fetchStatus }) => {
-                return fetchStatus !== 'loaded' ? (
-                  <Spinner size="xxlarge" middle />
-                ) : (
-                  <ul className="c-nav">
-                    {categories.map(category => (
-                      <li key={category.id} className="c-nav-item">
-                        <NavLink
-                          to={`/category/${category.id}`}
-                          className="c-nav-link"
-                          activeClassName="is-active"
-                        >
-                          <FontAwesomeIcon
-                            className="c-nav-icon"
-                            icon={category.icon}
-                          />
-                          {category.name}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                )
-              }}
-            </Query>
-          </nav>
-        </div>
-      </aside>
+      <Sidebar>
+        <SidebarModal
+          openCategoryModal={this.state.openCategoryModal}
+          toggleModal={this.toggleCategoryModal}
+        />
+        <Nav>
+          <div className="c-nav-action">
+            <NavItem>
+              <div
+                className="c-nav-link"
+                onClick={() =>
+                  this.setState({ openCategoryModal: !openCategoryModal })
+                }
+              >
+                <FontAwesomeIcon className="c-nav-icon" icon="plus" />
+                <NavText>{t('SIDEBAR.ADD_CATEGORY')}</NavText>
+              </div>
+            </NavItem>
+          </div>
+          <Query query={categoriesQuery}>
+            {({ data: categories, fetchStatus }) => {
+              return fetchStatus !== 'loaded' ? (
+                <Spinner size="xxlarge" middle />
+              ) : (
+                categories.map(category => (
+                  <NavItem key={category.id}>
+                    <NavLink
+                      to={`/category/${category.id}`}
+                      className="c-nav-link"
+                      activeClassName="is-active"
+                    >
+                      <FontAwesomeIcon
+                        className="c-nav-icon"
+                        icon={category.icon}
+                      />
+                      <NavText>{category.name}</NavText>
+                    </NavLink>
+                  </NavItem>
+                ))
+              )
+            }}
+          </Query>
+        </Nav>
+      </Sidebar>
     )
   }
 }
 
 // translate() provide t() to use translations (ex: locales/en.json)
-export default translate()(Sidebar)
+export default translate()(AppSidebar)

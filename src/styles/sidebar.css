@@ -1,11 +1,7 @@
 .c-add-category {
-	text-decoration: none;	
+	text-decoration: none;
 }
 
-.c-add-category {
-	margin: 10px auto !important;
-	display: block !important;	
-}
 
 .c-nav-link {
 	padding: 0 1rem;
@@ -22,7 +18,7 @@
 
 @media (max-width: 63.9375rem) {
 	.c-nav-link {
-		padding: 0;
+		padding: 3px;
 	}
 
 	.c-nav-link.is-active {
