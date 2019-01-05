@@ -1,0 +1,66 @@
+{
+  "name": "Passwords",
+  "slug": "cozy-passwords",
+  "icon": "icon.svg",
+  "categories": [],
+  "version": "0.1.0",
+  "licence": "AGPL-3.0",
+  "editor": "",
+  "source": "https://github.com/yeppao/cozy-passwords.git@build",
+  "developer": {
+    "name": "yeppao",
+    "url": ""
+  },
+  "routes": {
+    "/": {
+      "folder": "/",
+      "index": "index.html",
+      "public": false
+    }
+  },
+  "permissions": {
+    "apps": {
+      "description": "Required by the cozy-bar to display the icons of the apps",
+      "type": "io.cozy.apps",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "todos": {
+      "description": "Mocks test",
+      "type": "io.mocks.todos",
+      "verbs": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    },
+    "categories": {
+      "description": "Categories",
+      "type": "io.cozy.passwords.categories",
+      "verbs": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    },
+    "passwords": {
+      "description": "Passwords",
+      "type": "io.cozy.passwords.values",
+      "verbs": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  },
+  "locales": {
+    "en": {}
+  },
+  "langs": [
+    "en"
+  ]
+}
