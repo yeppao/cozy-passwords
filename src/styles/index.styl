@@ -1,4 +1,5 @@
 @require 'cozy-ui/build'
+@require './variables.styl'
 @require './sidebar.css'
 @require './todos.css'
 
@@ -8,46 +9,44 @@
 .password
     display flex
     line-height 35px
-    border-bottom 1px solid #cccccc
+    border-bottom 1px solid cozy-grey
     > div
-        flex: 1
+        flex 1
 
 .password-description
-    color: #cccccc
+    color cozy-grey
 
 .unstyled-link
-    text-decoration: none
-    color: inherit
+    text-decoration none
+    color inherit
 
 .select-option
-    display: flex
-    line-height: 28px
+    display flex
+    line-height 28px
     > .select-icon
-        flex: 1
-        text-align: center
+        flex 1
+        text-align center
     > .select-label
-        flex: 9
+        flex 9
 
 .cozy-blue
-    color: #297ef2
+    color cozy-blue
 
 div.password-modal-content
-    overflow: visible
+    overflow visible
 
 .home-icon
-    font-size: 70px
+    font-size 70px
 nav
     .c-nav-action
-        cursor: pointer
+        cursor pointer
 
     .c-nav-action > li
     .c-nav-action > li:hover
-        background: #297EF2
-        border-radius: 0 0.188rem 0.188rem 0
-        .c-nav-link > span
-        .c-nav-link > svg
-            color: #ffffff
+        background cozy-blue
+        border-radius 0 .188rem .188rem 0
+        .c-nav-link > span, svg
+            color white
 
     .c-nav-action > li:before
-        width: 0
-
+        width 0
