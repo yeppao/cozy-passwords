@@ -6,7 +6,7 @@ import React from 'react'
 import CozyClient, { CozyProvider } from 'cozy-client'
 import { render } from 'react-dom'
 import { I18n } from 'cozy-ui/react/I18n'
-import schema from 'doctypes'
+import { PASSWORDS_DOCTYPE, CATEGORIES_DOCTYPE } from '../../doctypes'
 
 let appLocale
 const renderApp = function(client) {
@@ -58,7 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const client = new CozyClient({
     uri: `${protocol}//${data.cozyDomain}`,
     token: data.cozyToken,
-    schema
+    schema: {
+      passwords: { doctype: PASSWORDS_DOCTYPE },
+      categories: { doctype: CATEGORIES_DOCTYPE }
+    }
   })
 
   // initialize the bar, common of all applications, it allows
