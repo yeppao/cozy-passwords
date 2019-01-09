@@ -9,7 +9,7 @@
   "source": "https://github.com/yeppao/cozy-passwords.git@build",
   "developer": {
     "name": "yeppao",
-    "url": ""
+    "url": "https://github.com/yeppao"
   },
   "routes": {
     "/": {
