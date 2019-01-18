@@ -11,6 +11,7 @@ import Spinner from 'cozy-ui/react/Spinner'
 import { translate } from 'cozy-ui/react/I18n'
 
 import SidebarModal from './SidebarModal'
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export class AppSidebar extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export class AppSidebar extends Component {
                   this.setState({ openCategoryModal: !openCategoryModal })
                 }
               >
-                <FontAwesomeIcon className="c-nav-icon" icon="plus" />
+                <FontAwesomeIcon className="c-nav-icon" icon={faPlus} />
                 <NavText>{t('SIDEBAR.ADD_CATEGORY')}</NavText>
               </div>
             </NavItem>

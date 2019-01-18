@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import PasswordModal from './PasswordModal'
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default class Category extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ export default class Category extends Component {
         />
         <Button
           label="Add a password"
-          icon={<FontAwesomeIcon icon="plus" />}
+          icon={<FontAwesomeIcon icon={faPlus} />}
           onClick={() =>
             this.setState({ openPasswordModal: !openPasswordModal })
           }
