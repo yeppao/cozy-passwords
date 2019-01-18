@@ -10,7 +10,7 @@ import {
 } from 'cozy-ui/react/Hero'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faKey, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faLock } from '@fortawesome/free-solid-svg-icons'
 
 const PURPLE = '#a75bcb'
 const BLUE = '#2d8af2'
@@ -23,7 +23,11 @@ export class Home extends Component {
         <Title>{t('HOMEPAGE.TITLE')}</Title>
         <Sections>
           <Section>
-            <FontAwesomeIcon icon={faKey} color={PURPLE} className="home-icon" />
+            <FontAwesomeIcon
+              icon={faKey}
+              color={PURPLE}
+              className="home-icon"
+            />
             <Subtitle>{t('HOMEPAGE.PASSWORD.TITLE')}</Subtitle>
             <Paragraph>{t('HOMEPAGE.PASSWORD.DESCRIPTION')}</Paragraph>
           </Section>

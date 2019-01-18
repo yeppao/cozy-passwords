@@ -11,7 +11,7 @@ import Spinner from 'cozy-ui/react/Spinner'
 import { translate } from 'cozy-ui/react/I18n'
 
 import SidebarModal from './SidebarModal'
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export class AppSidebar extends Component {
   constructor(props) {
